@@ -1,0 +1,20 @@
+{
+  "name": "swiggybackendapi",
+  "version": "1.0.0",
+  "description": "This backend for my Swiggy frontend React Project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "eslintIgnore": [
+    "minifiedRestaurantList.js"
+  ],
+  "author": "Praveen",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
