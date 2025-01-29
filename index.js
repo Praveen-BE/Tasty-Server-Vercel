@@ -7,7 +7,7 @@ dotenv.config();
 const PORT = process.env.PORT || 3333;
 const app = express();
 
-app.use(cors({ origin: "http://localhost:1234", credentials: true }));
+app.use(cors({ origin: "https://tastyfood-0.web.app/", credentials: true }));
 
 app.use(express.json());
 
