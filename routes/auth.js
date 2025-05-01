@@ -59,6 +59,8 @@ authRouter.post("/login", async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         emailId: user.emailId,
+        isPremium: user.isPremium,
+        membershipType: user.membershipType,
       });
     } else {
       throw new Error("Invalid Credintials...");

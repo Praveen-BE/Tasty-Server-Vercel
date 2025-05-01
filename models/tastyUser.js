@@ -72,6 +72,14 @@ const userSchema = new mongoose.Schema(
       //     }
       // },
     },
+    isPremium: {
+      type: Boolean,
+      default: false,
+    },
+    membershipType: {
+      type: String,
+      default: null,
+    },
     favoriteFood: {
       type: [String],
     },

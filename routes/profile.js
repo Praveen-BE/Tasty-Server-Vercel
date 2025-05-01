@@ -13,6 +13,8 @@ profileRouter.get("/profile/view", userAuth, async (req, res) => {
       lastName: user.lastName,
       emailId: user.emailId,
       userId: user._Id,
+      isPremium: user.isPremium,
+      membershipType: user.membershipType,
     });
   } catch (err) {
     res.status(401).send("ERROR : " + err.message);
