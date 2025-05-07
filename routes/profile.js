@@ -1,8 +1,6 @@
 import express from "express";
 import userAuth from "../middleware/auth.js";
-// const { validateEditProfileData } = require("../utils/validation");
-// import TastyUser from "../models/tastyUser";
-// const bcrypt = require("bcrypt");
+import tastyUserData from "../models/tastyUser.js";
 const profileRouter = express.Router();
 
 profileRouter.get("/profile/view", userAuth, async (req, res) => {
@@ -18,6 +16,34 @@ profileRouter.get("/profile/view", userAuth, async (req, res) => {
     });
   } catch (err) {
     res.status(401).send("ERROR : " + err.message);
+  }
+});
+
+profileRouter.get("/unsubscribe", userAuth, async (req, res) => {
+  try {
+    const user = req.user;
+    const userData = await tastyUserData.findOne({ emailId: user.emailId });
+    // console.log(userData);
+    if (
+      userData?.membershipType == "gold" ||
+      userData?.membershipType == "silver"
+    ) {
+      // console.log(userData?.membershipType);
+      userData.membershipType = null;
+      await userData.save();
+      // console.log(userData?.membershipType);
+    }
+
+    res.send({
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      emailId: userData.emailId,
+      userId: userData._Id,
+      isPremium: userData.isPremium,
+      membershipType: userData.membershipType,
+    });
+  } catch (err) {
+    res.status(401).send("Error : " + err.message);
   }
 });
 

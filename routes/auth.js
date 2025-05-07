@@ -8,7 +8,6 @@ const authRouter = express.Router();
 
 authRouter.post("/signup", async (req, res) => {
   try {
-    // validation
     // console.log(req.body);
     validateSignUpData(req);
 
@@ -31,7 +30,18 @@ authRouter.post("/signup", async (req, res) => {
       httpOnly: true,
       secure: true,
     });
-    res.json({ message: "User Added Successfully", data: userData });
+    // const user = await tastyUserData.findOne({ emailId: emailId });
+    res.json({
+      message: "User Added Successfully",
+      data: {
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        emailId: userData.emailId,
+        userId: userData._Id,
+        isPremium: userData.isPremium,
+        membershipType: userData.membershipType,
+      },
+    });
   } catch (err) {
     res.status(400).send("ERROR : " + err.message);
   }
