@@ -71,10 +71,11 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
       console.log("User Saved");
 
       await user.save();
-
+      console.log("Payment Success");
       return res.status(200).json({ msg: "Webhook Received Successfully" });
     }
     if (req.body.event == "payment.failed") {
+      console.log("Payment Failed But Webhook Received");
       return res.status(200).json({ msg: "Failed But Webhook Received !...." });
     }
   } catch (err) {
